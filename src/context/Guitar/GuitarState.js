@@ -52,6 +52,11 @@ dispatch({
 })
 }
 
+const crearGuitarra = (async(form) => {
+  const res = await axiosClient.post("guitars/create", form)
+  console.log(res)
+})
+
   // 4. Retorno. para que pueda retornar todos los datos, necesitamos un provider: da acceso a db
   return (
     <GuitarContext.Provider
@@ -62,7 +67,8 @@ dispatch({
         singleGuitar: globalState.singleGuitar,
         changeText,
         getGuitars,
-        getGuitar
+        getGuitar,
+        crearGuitarra
       }}
     >
       {props.children} {/*todos los children tendrán acceso a value*/}

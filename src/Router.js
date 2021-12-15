@@ -8,6 +8,8 @@ import Guitars from './components/Guitars'
 import Stores from './components/Stores'
 import Single from './components/Guitars/Single'
 import Tienda from './components/Stores/Single'
+import CrearGuitarra from './components/Guitars/Crear'
+import CrearTienda from './components/Stores/Crear'
 
 import GuitarState from './context/Guitar/GuitarState'
 import StoreState from './context/Store/StoreState'
@@ -26,9 +28,12 @@ const Router = () => {
 <Route path="registro" element={<Register/>}/>
 <Route path="iniciar-sesion" element={<Login/>}/>
 <Route path="guitarras" element={<Guitars/>}></Route>
+<Route path="guitarras/crear" element={<CrearGuitarra/>}></Route>
 <Route path="guitarras/:id" element={<Single/>}></Route>
 <Route path="tiendas" element={<Stores/>}></Route>
+<Route path="tiendas/crear" element={<CrearTienda/>}></Route>
 <Route path="tiendas/:id" element={<Tienda/>}></Route>
+
             </Route>
         </Routes>
     </BrowserRouter>

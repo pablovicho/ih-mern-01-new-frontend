@@ -45,6 +45,11 @@ const StoreState = (props) => {
     });
   };
 
+  const crearTienda = async(form) => {
+  const res = await axiosClient.post("stores/create", form)
+  console.log(res)
+}
+
   // 4. Retorno. para que pueda retornar todos los datos, necesitamos un provider: da acceso a db
   return (
     <StoreContext.Provider
@@ -56,6 +61,7 @@ const StoreState = (props) => {
         changeText,
         getStores,
         getStore,
+        crearTienda
       }}
     >
       {props.children} {/*todos los children tendrán acceso a value*/}
