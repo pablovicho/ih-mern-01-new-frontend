@@ -1,0 +1,36 @@
+import React, {useEffect, useContext} from "react";
+import StoreContext from "../../context/Store/StoreContext";
+import { Link } from "react-router-dom";
+
+export default function Stores() {
+  // Estado global
+  const ctx = useContext(StoreContext);
+  const { stores, hola, changeText, getStores } = ctx;
+  console.log(ctx);
+
+  return (
+    <>
+      
+      <p>{hola}</p>
+      <button onClick={() => {changeText()}}>Cambiar texto</button>
+      <button onClick={ () => {getStores()}}>Listar tiendas</button>
+      
+      <div>
+      <h2>Listado de tiendas</h2>
+        <ul>
+          {stores.map((element) => {
+            return (
+              <li key={element._id}>
+              <Link to={`/tiendas/${element._id}`}>
+										<p>{element.nombre}</p>
+									</Link>
+                <p>{element.domicilio}</p>
+              </li>
+
+            );
+          })}
+        </ul>
+      </div>
+    </>
+  );
+}
