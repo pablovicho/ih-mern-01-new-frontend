@@ -11,12 +11,12 @@ const StoreState = (props) => {
     singleStore: {
       _id: "",
       nombre: "",
-      direccion: "",
+      domicilio: "",
       telefono: "",
     },
   };
   // 2. Configuración de reducer y creación del estado global
-  const [globalState, dispatch] = useReducer(StoreReducer, initialState); //GuitarReducer son todas las funciones que van a alterar el estado inicial
+  const [globalState, dispatch] = useReducer(StoreReducer, initialState); //el Reducer son todas las funciones que van a alterar el estado inicial
   // 3. Funciones de cambio en estado global
   const changeText = () => {
     dispatch({
@@ -28,7 +28,6 @@ const StoreState = (props) => {
   const getStores = async () => {
     const res = await axiosClient.get("stores/readall");
     const list = res.data.data;
-    console.log(list);
     dispatch({
       type: "GET_STORES",
       payload: list, //datos reales que le vas a pasar para cambiar el estado global
@@ -50,6 +49,16 @@ const StoreState = (props) => {
   console.log(res)
 }
 
+const updateStore = async (form, idStore) => {
+  const res = await axiosClient.put(`stores/edit/${idStore}`, form) //hay que pasarle el form, si no no cambia el estado
+  console.log(res)
+  const updatedStore = res.data.data
+  dispatch({
+    type: "UPDATE_STORE",
+    payload: updatedStore
+  })
+}
+
   // 4. Retorno. para que pueda retornar todos los datos, necesitamos un provider: da acceso a db
   return (
     <StoreContext.Provider
@@ -61,7 +70,8 @@ const StoreState = (props) => {
         changeText,
         getStores,
         getStore,
-        crearTienda
+        crearTienda,
+        updateStore
       }}
     >
       {props.children} {/*todos los children tendrán acceso a value*/}

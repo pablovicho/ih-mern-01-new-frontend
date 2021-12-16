@@ -1,14 +1,17 @@
-import React, {useState, useContext} from 'react'
-import GuitarContext from './../../context/Guitar/GuitarContext'
+import React, {useState, useContext, useEffect} from 'react'
+import GuitarContext from './../../../context/Guitar/GuitarContext'
+import { useParams } from 'react-router-dom'
 
-export default function CrearGuitarra() {
+export default function EditGuitar() {
 // estado global: state
 const ctx = useContext(GuitarContext)
-const { crearGuitarra } = ctx
-
+const {userSubmitForm, getGuitar, updateGuitar} = ctx
+const { nombre, precio, color, imagen, description } = ctx.singleGuitar
+const params = useParams()
+const idGuitar = params.id
 
 // estado local: context  (apenas se capturan los datos, se utilizan en un action.post)
-const [newGuitar, setNewGuitar] = useState({
+const [guitarData, setGuitarData] = useState({
     nombre:"",
     precio:"",
     color:"",
@@ -18,17 +21,37 @@ const [newGuitar, setNewGuitar] = useState({
 
 // funciones
 
+//actualización
+useEffect(() => {
+	const updateLocalState = async() => {
+		//descargar los datos de la guitarra de la página
+await getGuitar(idGuitar)
+		//cambiar el estado con los nuevos cambios del global al local
+setGuitarData({
+	nombre,
+	precio,
+	color,
+	imagen,
+	description,
+})
+//return y cerramos
+return
+		
+	}
+	updateLocalState()
+}, [])
+
 const handleChange = (e) => {
     e.preventDefault()
-    setNewGuitar({
-        ...newGuitar,
+    setGuitarData({
+        ...guitarData,
         [e.target.name]: e.target.value
     })
 }
 
 const handleSubmit = (event) => {
     event.preventDefault()
-    crearGuitarra(newGuitar)
+   updateGuitar(guitarData, idGuitar)
 }
 
 
@@ -38,8 +61,7 @@ const handleSubmit = (event) => {
 				<div className="shadow sm:rounded-md sm:overflow-hidden">
 					<div className="bg-white py-6 px-4 space-y-6 sm:p-6">
 						<div>
-							<h3 className="text-lg leading-6 font-medium text-gray-900">Personal Information</h3>
-							<p className="mt-1 text-sm text-gray-500">Use a permanent address where you can recieve mail.</p>
+							<h3 className="text-lg leading-6 font-medium text-gray-900">Editar guitarra</h3>
 						</div>
 
 						<div className="grid grid-cols-6 gap-6">
@@ -48,24 +70,25 @@ const handleSubmit = (event) => {
 								<input
 									onChange={ (event) => { handleChange(event) } } 
 									type="text" 
-									name="nombre"  
+									name="nombre"
+									value={guitarData.nombre}  
 									className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
 							</div>
 
 							<div className="col-span-6 sm:col-span-3">
 								<label htmlFor="precio" className="block text-sm font-medium text-gray-700">Precio</label>
-								<input onChange={ (event) => { handleChange(event) } } type="number" name="precio" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+								<input value={guitarData.precio} onChange={ (event) => { handleChange(event) } } type="number" name="precio" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
 							</div>
 
 							<div className="col-span-6 sm:col-span-4">
 								<label htmlFor="imagen" className="block text-sm font-medium text-gray-700">Imagen</label>
-								<input onChange={ (event) => { handleChange(event) } } type="text" name="imagen" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+								<input value={guitarData.imagen} onChange={ (event) => { handleChange(event) } } type="text" name="imagen" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
 							</div>
 
 							<div className="col-span-6 sm:col-span-4">
 								<label htmlFor="color" className="block text-sm font-medium text-gray-700">Color</label>
 								<select onChange={ (event) => { handleChange(event) } } name="color" className="mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                <option value={""}>---</option>
+                                <option value={guitarData.color}>---</option>
                                     <option value={"Blanco con negro"}>Blanco con negro</option>
 									<option value={"Rojo con blanco"}>Rojo con blanco</option>
                                     
@@ -74,7 +97,7 @@ const handleSubmit = (event) => {
 
 							<div className="col-span-6 sm:col-span-6 lg:col-span-4">
 								<label htmlFor="description" className="block text-sm font-medium text-gray-700">Descripción</label>
-								<textarea onChange={ (event) => { handleChange(event) } } type="text" name="description" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+								<textarea value={guitarData.description} onChange={ (event) => { handleChange(event) } } type="text" name="description" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
 							</div>
 
 

@@ -57,6 +57,17 @@ const crearGuitarra = (async(form) => {
   console.log(res)
 })
 
+
+const updateGuitar = async (form, idGuitar) => {
+  const res = await axiosClient.put(`guitars/edit/${idGuitar}`)
+  console.log(res)
+  const updatedGuitar = res.data.data
+  dispatch({
+    type: "UPDATE_GUITAR",
+    payload: updatedGuitar
+  })
+}
+
   // 4. Retorno. para que pueda retornar todos los datos, necesitamos un provider: da acceso a db
   return (
     <GuitarContext.Provider
@@ -68,12 +79,14 @@ const crearGuitarra = (async(form) => {
         changeText,
         getGuitars,
         getGuitar,
-        crearGuitarra
+        crearGuitarra,
+        updateGuitar
       }}
     >
       {props.children} {/*todos los children tendrán acceso a value*/}
     </GuitarContext.Provider>
   );
 };
+
 
 export default GuitarState;

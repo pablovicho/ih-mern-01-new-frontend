@@ -14,6 +14,7 @@ const reducer = (globalState, action) => {
       };
 
     case "GET_STORE":
+      case "UPDATE_STORE":
       return {
         ...globalState,
         singleStore: action.payload,
