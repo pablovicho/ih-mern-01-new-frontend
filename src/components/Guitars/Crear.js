@@ -1,7 +1,7 @@
 import React, {useState, useContext} from 'react'
 import GuitarContext from './../../context/Guitar/GuitarContext'
-export default function CrearGuitarra() {
 
+export default function CrearGuitarra() {
 // estado global: state
 const ctx = useContext(GuitarContext)
 const { crearGuitarra } = ctx
@@ -20,15 +20,14 @@ const [newGuitar, setNewGuitar] = useState({
 
 const handleChange = (e) => {
     e.preventDefault()
-    console.log(e.target.name)
     setNewGuitar({
         ...newGuitar,
         [e.target.name]: e.target.value
     })
 }
 
-const handleSubmit = (e) => {
-    e.preventDefault()
+const handleSubmit = (event) => {
+    event.preventDefault()
     crearGuitarra(newGuitar)
 }
 
