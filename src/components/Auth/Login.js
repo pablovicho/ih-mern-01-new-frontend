@@ -1,3 +1,4 @@
+
 import React, {useState, useContext} from 'react'
 import { Link } from 'react-router-dom'
 import UserContext from '../../context/User/UserContext'
@@ -30,6 +31,7 @@ const  handleSubmit = (e) => {
 
 
   return (
+
 		<div className="flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <img className="mx-auto h-12 w-auto" src="https://cdn.worldvectorlogo.com/logos/ironhack-1.svg" alt="Workflow" />
@@ -48,7 +50,9 @@ const  handleSubmit = (e) => {
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+
           <form onSubmit={(event) => {handleSubmit(event)}}
+
             className="space-y-6"
           >
             <div>
@@ -56,7 +60,9 @@ const  handleSubmit = (e) => {
                 Tu correo electrónico
               </label>
               <div className="mt-1">
+
                 <input onChange={(e) => {handleChange(e)}}
+
                   name="email" 
                   type="email" 
                   className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
@@ -68,7 +74,9 @@ const  handleSubmit = (e) => {
                 Tu contraseña
               </label>
               <div className="mt-1">
+
                 <input onChange={(e) => {handleChange(e)}}
+
                   name="password" 
                   type="password"
                   className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />

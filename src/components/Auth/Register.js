@@ -1,10 +1,10 @@
+
 import React, {useState, useContext} from 'react'
 import { Link } from 'react-router-dom'
 import UserContext from "./../../context/User/UserContext"
 
-
-
 export default function Register() {
+
 
 const ctx = useContext(UserContext)
 const {registerUser} = ctx
@@ -32,8 +32,6 @@ const  handleSubmit = (e) => {
 }
 
 
-
-
 	return (
 		<div className="flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -53,30 +51,38 @@ const  handleSubmit = (e) => {
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+
           <form
           onSubmit={(event) => {handleSubmit(event)}}
            className="space-y-6">
 
           <div>
               <label htmlFor="nombre" className="block text-sm font-medium text-gray-700">
+
                 Tu nombre completo
               </label>
               <div className="mt-1">
                 <input 
+
                 onChange={(e) => {handleChange(e)}}
                   name="nombre" 
+
                   type="text" 
                   className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
               </div>
             </div>
 
             <div>
+
               <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+
                 Tu correo electrónico
               </label>
               <div className="mt-1">
                 <input 
+
                 onChange={(e) => {handleChange(e)}}
+
                   name="email" 
                   type="email" 
                   className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
@@ -84,12 +90,16 @@ const  handleSubmit = (e) => {
             </div>
 
             <div>
+
               <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+
                 Tu contraseña
               </label>
               <div className="mt-1">
                 <input 
+
                 onChange={(e) => {handleChange(e)}}
+
                   name="password" 
                   type="password" 
                   required 
@@ -98,13 +108,17 @@ const  handleSubmit = (e) => {
             </div>
 
             <div>
+
               <label htmlFor="confirmarPassword" className="block text-sm font-medium text-gray-700">
+
                 Confirma tu contraseña
               </label>
               <div className="mt-1">
                 <input 
+
                 onChange={(e) => {handleChange(e)}}
                 name="confirmarPassword" 
+
                 type="password" 
                 required 
                 className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />

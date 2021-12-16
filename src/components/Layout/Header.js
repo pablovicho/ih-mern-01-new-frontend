@@ -37,6 +37,7 @@ export default function Header() {
 						</div>
 					</div>
 					<div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
+
 						{
 							currentUser.nombre ?
 
@@ -55,6 +56,7 @@ export default function Header() {
 						}
 
 					</div>
+
 				</div>
 			</nav>
 		</header>
